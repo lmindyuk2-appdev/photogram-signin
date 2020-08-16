@@ -77,7 +77,7 @@
   <input id="browser_photo_id" type="text" value="<%= @the_photo.id %>" name="query_photo_id">
 
   <label for="browser_author_id">Author ID</label>
-  <input id="browser_author_id" type="text" name="query_author_id">
+  <input id="browser_author_id" type="text" value="<%= @current_user.id %>" name="query_author_id">
 
   <label for="browser_comment">Comment</label>
   <textarea id="browser_comment" name="query_body" placeholder="Enter a comment..."></textarea>
