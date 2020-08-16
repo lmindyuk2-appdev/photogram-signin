@@ -13,5 +13,12 @@ class CommentsController < ApplicationController
     redirect_to("/photos/#{the_comment.photo_id}")
   end
 
+  def destroy
+    id = params.fetch("the_comment_id")
+    the_comment = Comment.where({ :id => id }).at(0)
+    the_comment.destroy
+
+    redirect_to("/photos")
+  end
 
 end

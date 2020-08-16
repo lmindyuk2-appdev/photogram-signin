@@ -18,8 +18,26 @@
 
   <dt>Posted</dt>
   <dd>
-    2 months ago
+    <%= time_ago_in_words(@the_photo.created_at) %>
   </dd>
+  <% if @the_photo.fan_list.exclude? @current_user.username%>
+    <dt>Add a fan</dt>
+      <dd>
+
+        <form action="/insert_like" method="get">
+          <input type="hidden" value=<%=@the_photo.id%> name="query_photo_id">
+          <button>Like</button>
+        </form>
+      </dd>
+
+  <% else %>
+      <dt>Remove a fan</dt>
+      <%like_id = @the_photo.likes.where({ :fan_id => @current_user.id }).at(0).id %>
+      <dd>
+        <a href="/delete_like/<%=like_id%>">Delete like</a>
+      </dd>
+
+  <%end%>
   <% if @the_photo.poster.username == @current_user.username %>
     <dt>Edit photo</dt>
     <dd>

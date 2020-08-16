@@ -12,9 +12,11 @@
 class Like < ApplicationRecord
   validates(:fan, { :presence => true })
   validates(:photo, { 
-    :presence => true,
+    :presence => false,
     :uniqueness => { :scope => [:fan_id] }
   })
+
+  belongs_to(:photo)
 
   def fan
     my_fan_id = self.fan_id
