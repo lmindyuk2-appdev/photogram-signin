@@ -20,27 +20,28 @@
   <dd>
     2 months ago
   </dd>
+  <% if @the_photo.poster.username == @current_user.username %>
+    <dt>Edit photo</dt>
+    <dd>
+      <form action="/update_photo/<%= @the_photo.id %>">
+        <label for="browser_image">Image</label>
+        <input id="browser_image" type="text" name="query_image" placeholder="Enter a URL for the image..." value="<%= @the_photo.image %>">
 
-  <dt>Edit photo</dt>
-  <dd>
-    <form action="/update_photo/<%= @the_photo.id %>">
-      <label for="browser_image">Image</label>
-      <input id="browser_image" type="text" name="query_image" placeholder="Enter a URL for the image..." value="<%= @the_photo.image %>">
+        <label for="browser_caption">Caption</label>
+        <textarea id="browser_caption" name="query_caption" placeholder="Enter a caption for the photo..."><%= @the_photo.caption %></textarea>
 
-      <label for="browser_caption">Caption</label>
-      <textarea id="browser_caption" name="query_caption" placeholder="Enter a caption for the photo..."><%= @the_photo.caption %></textarea>
+        <button>Update photo</button>
+      </form>
+    </dd>
 
-      <button>Update photo</button>
-    </form>
-  </dd>
-
-  <dt>Delete photo</dt>
-  <dd>
-    <a href="/delete_photo/<%= @the_photo.id %>;">
-      Delete this photo
-    </a>
-  </dd>
-</dl>
+    <dt>Delete photo</dt>
+    <dd>
+      <a href="/delete_photo/<%= @the_photo.id %>;">
+        Delete this photo
+      </a>
+    </dd>
+  </dl>
+<%end%>
 
 <h2>Comments</h2>
 
